@@ -14,11 +14,11 @@ import java.util.List;
 public class QuestionService {
 
     @Autowired
-    QuestionDao questiondao;
+    QuestionDao questionDao;
 
     public ResponseEntity<List<Question>> getAllQuestions() {
         try {
-            return new ResponseEntity<>(questiondao.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -26,7 +26,7 @@ public class QuestionService {
     }
     public ResponseEntity<List<Question>> getQuestionsByCategory(String category) {
         try {
-            return new ResponseEntity<>(questiondao.findByCategoryIgnoreCase(category),HttpStatus.OK);
+            return new ResponseEntity<>(questionDao.findByCategoryIgnoreCase(category),HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -35,12 +35,12 @@ public class QuestionService {
     }
 
     public ResponseEntity<String> addQuestion(Question question) {
-        questiondao.save(question);
+        questionDao.save(question);
         return new ResponseEntity<>("success",HttpStatus.CREATED);
     }
 
     public ResponseEntity<String> deleteById(int id){
-        questiondao.deleteById(id);
+        questionDao.deleteById(id);
         return new ResponseEntity<>("success",HttpStatus.OK);
     }
 
